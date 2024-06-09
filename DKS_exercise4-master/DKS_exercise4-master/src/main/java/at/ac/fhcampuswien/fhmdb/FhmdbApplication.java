@@ -1,5 +1,7 @@
 package at.ac.fhcampuswien.fhmdb;
 
+import at.ac.fhcampuswien.fhmdb.controllers.MainController;
+import at.ac.fhcampuswien.fhmdb.enums.UIComponent;
 import at.ac.fhcampuswien.fhmdb.factoryPattern.MyFactory;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +20,8 @@ public class FhmdbApplication extends Application {
             MyFactory myFactory = new MyFactory();
 
             // Configure FXMLLoader to use MyFactory
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource("./fxml/home.fxml"));
+            FXMLLoader loader = new FXMLLoader(MainController.class.getResource(UIComponent.HOME.path));
             loader.setControllerFactory(myFactory);
 
             // Load the FXML file and get the root node

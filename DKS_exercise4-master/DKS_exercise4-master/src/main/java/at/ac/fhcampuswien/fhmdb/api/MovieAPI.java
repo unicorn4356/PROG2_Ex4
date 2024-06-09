@@ -1,7 +1,6 @@
 package at.ac.fhcampuswien.fhmdb.api;
 
 import at.ac.fhcampuswien.fhmdb.builderPattern.MovieAPIRequestBuilder;
-import at.ac.fhcampuswien.fhmdb.models.Genre;
 import at.ac.fhcampuswien.fhmdb.models.Movie;
 import okhttp3.*;
 import com.google.gson.Gson;
@@ -18,7 +17,7 @@ public class MovieAPI {
         return getAllMovies(null, null, null, null);
     }
 
-    public static List<Movie> getAllMovies(String query, Genre genre, String releaseYear, String ratingFrom) throws MovieApiException{
+    public static List<Movie> getAllMovies(String query, String genre, String releaseYear, String ratingFrom) throws MovieApiException{
 
         String url = new MovieAPIRequestBuilder(URL)
                 .query(query)

@@ -61,6 +61,32 @@ public class MovieListController implements Initializable, Observer {
 
     protected SortedState sortedState;
 
+    @FXML
+    public void sortAscending() {
+        movieSorter.sortAscending();
+        updateMovieList();
+    }
+
+    @FXML
+    public void sortDescending() {
+        movieSorter.sortDescending();
+        updateMovieList();
+    }
+
+    @FXML
+    public void resetSort() {
+        movieSorter.resetSort();
+        updateMovieList();
+    }
+
+    private void updateMovieList() {
+
+        List<Movie> movies = allMovies; // Fetch the list of movies
+        movieSorter.sort(movies);
+        setMovies(movies);
+    }
+
+
     private final ClickEventHandler onAddToWatchlistClicked = (clickedItem) -> {
         if (clickedItem instanceof Movie movie) {
             WatchlistMovieEntity watchlistMovieEntity = new WatchlistMovieEntity(
@@ -219,9 +245,9 @@ public class MovieListController implements Initializable, Observer {
         String ratingFrom = validateComboboxValue(ratingFromComboBox.getSelectionModel().getSelectedItem());
         String genreValue = validateComboboxValue(genreComboBox.getSelectionModel().getSelectedItem());
 
-        Genre genre = null;
+        String genre = null;
         if(genreValue != null) {
-            genre = Genre.valueOf(genreValue);
+            genre = genreValue;
         }
 
         List<Movie> movies = getMovies(searchQuery, genre, releaseYear, ratingFrom);
@@ -243,7 +269,7 @@ public class MovieListController implements Initializable, Observer {
         return null;
     }
 
-    public List<Movie> getMovies(String searchQuery, Genre genre, String releaseYear, String ratingFrom) {
+    public List<Movie> getMovies(String searchQuery, String genre, String releaseYear, String ratingFrom) {
         try{
             return MovieAPI.getAllMovies(searchQuery, genre, releaseYear, ratingFrom);
         }catch (MovieApiException e){

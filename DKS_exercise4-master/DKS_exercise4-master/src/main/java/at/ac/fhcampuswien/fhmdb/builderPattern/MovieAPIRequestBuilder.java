@@ -1,7 +1,5 @@
 package at.ac.fhcampuswien.fhmdb.builderPattern;
 
-import at.ac.fhcampuswien.fhmdb.models.Genre;
-
 public class MovieAPIRequestBuilder {
 
     private String base;

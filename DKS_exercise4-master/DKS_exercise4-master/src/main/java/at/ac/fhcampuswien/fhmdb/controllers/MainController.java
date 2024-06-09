@@ -1,60 +1,31 @@
 package at.ac.fhcampuswien.fhmdb.controllers;
 
-import at.ac.fhcampuswien.fhmdb.factoryPattern.MyFactory;
 import at.ac.fhcampuswien.fhmdb.enums.UIComponent;
-import at.ac.fhcampuswien.fhmdb.statePattern.*;
-import at.ac.fhcampuswien.fhmdb.database.*;
+import at.ac.fhcampuswien.fhmdb.factoryPattern.MyFactory;
 import at.ac.fhcampuswien.fhmdb.models.Movie;
-import com.jfoenix.controls.*;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBasicCloseTransition;
 import javafx.animation.TranslateTransition;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class MainController implements Observer{
-    private MovieSorter movieSorter;
 
-    @FXML
-    private ListView<Movie> movieListView;
-
-    public MainController() throws DataBaseException {
-        this.movieSorter = new MovieSorter();
+/*    public MainController() throws DataBaseException {
         WatchlistRepository.getInstance().addObserver((at.ac.fhcampuswien.fhmdb.observerPattern.Observer) this);
-    }
+    }*/
 
-
-    @FXML
-    public void sortAscending() {
-        movieSorter.sortAscending();
-        updateMovieList();
-    }
-
-    @FXML
-    public void sortDescending() {
-        movieSorter.sortDescending();
-        updateMovieList();
-    }
-
-    @FXML
-    public void resetSort() {
-        movieSorter.resetSort();
-        updateMovieList();
-    }
-
-    private void updateMovieList() {
-        List<Movie> movies = getMoviesFromRepository(); // Fetch the list of movies
-        movieSorter.sort(movies);
-        movieListView.setItems(FXCollections.observableArrayList(movies));
-    }
     @FXML
     public JFXHamburger hamburgerMenu;
 
@@ -169,4 +140,5 @@ public class MainController implements Observer{
     public void update(Observable o, Object arg) {
 
     }
+
 }
